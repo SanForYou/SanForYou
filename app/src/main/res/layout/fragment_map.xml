@@ -6,10 +6,9 @@
     tools:context=".MapFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.naver.maps.map.MapView
+        android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="map page" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>
