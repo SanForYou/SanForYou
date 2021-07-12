@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 public class MypageFragment extends Fragment {
 
+    //test
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
