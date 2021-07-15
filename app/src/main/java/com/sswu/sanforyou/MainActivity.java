@@ -10,7 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    //플래그먼트 프로퍼
+    //플래그먼트 프로퍼티
     MapFragment map_fragment;
     InfoFragment info_fragment;
     ReviewFragment review_fragment;
