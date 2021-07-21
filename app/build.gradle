@@ -44,4 +44,6 @@ dependencies {
     implementation group: 'com.android.volley', name: 'volley', version: '1.2.0'
 
 
+    implementation group: 'com.android.volley', name: 'volley', version: '1.2.0'
+
 }

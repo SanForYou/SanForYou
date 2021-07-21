@@ -23,5 +23,5 @@
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="2ykent3qjj" />
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
