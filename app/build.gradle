@@ -41,6 +41,7 @@ dependencies {
     implementation('com.naver.maps:map-sdk:3.12.0') {
         exclude group: 'com.android.support'
     }
+    implementation group: 'com.android.volley', name: 'volley', version: '1.2.0'
 
 
 }
