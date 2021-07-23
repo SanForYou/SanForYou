@@ -38,9 +38,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="회원 가입"
+        android:text="@string/회원가입"
         android:textColor="@color/black"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -52,7 +52,7 @@
         android:layout_width="290dp"
         android:layout_height="1dp"
         android:layout_gravity="center"
-        android:layout_margin="30dp"
+        android:layout_margin="20dp"
         android:background="@color/black"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="65dp"
@@ -66,12 +66,13 @@
 
         <TextView
             android:id="@+id/textView2_6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="40dp"
-            android:text="이름"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textAlignment="center"
             android:textColor="@color/black"
+            android:text="@string/이름"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.22"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -83,9 +84,10 @@
             android:id="@+id/editText3"
             android:layout_width="250dp"
             android:layout_height="29dp"
-            android:background="#B2B2B3"
-            android:layout_marginLeft="30dp"
             android:layout_gravity="center"
+
+            android:background="#B2B2B3"
+            android:inputType="text"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="155dp"
             tools:layout_editor_absoluteY="342dp" />
@@ -98,12 +100,12 @@
 
         <TextView
             android:id="@+id/textView2_8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="아이디"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="@string/아이디"
             android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:layout_marginLeft="40dp"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.215"
@@ -116,9 +118,9 @@
             android:id="@+id/editText4"
             android:layout_width="250dp"
             android:layout_height="29dp"
-            android:background="#B2B2B3"
-            android:layout_marginLeft="30dp"
             android:layout_gravity="center"
+            android:background="#B2B2B3"
+            android:inputType="text"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="155dp"
             tools:layout_editor_absoluteY="236dp" />
@@ -131,12 +133,13 @@
 
         <TextView
             android:id="@+id/textView2_11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="비밀번호 확인"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="@string/비밀번호확인"
             android:textColor="@color/black"
-            android:layout_marginLeft="10dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.209"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -150,7 +153,6 @@
             android:layout_height="29dp"
             android:layout_gravity="center"
             android:background="#B2B2B3"
-            android:layout_marginLeft="20dp"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="155dp"
             tools:layout_editor_absoluteY="293dp" />
@@ -163,12 +165,13 @@
 
         <TextView
             android:id="@+id/textView2_9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:text="이메일"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="@string/비밀번호"
             android:textColor="@color/black"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.228"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -182,7 +185,6 @@
             android:layout_height="29dp"
             android:layout_gravity="center"
             android:background="#B2B2B3"
-            android:layout_marginLeft="20dp"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="155dp"
             tools:layout_editor_absoluteY="446dp" />
@@ -192,27 +194,30 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/textView2_10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="비밀번호"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="@string/이메일"
             android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.222"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.557" />
+
         <EditText
             android:id="@+id/editText6"
             android:layout_width="250dp"
             android:layout_height="29dp"
-            android:background="#B2B2B3"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
+            android:background="#B2B2B3"
+            android:inputType="textEmailAddress"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="155dp"
             tools:layout_editor_absoluteY="397dp" />
@@ -223,20 +228,18 @@
         android:layout_height="1dp"
         android:background="@color/black"
         android:layout_gravity="center"
-        android:layout_margin="30dp"
+        android:layout_margin="20dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="60dp"
         tools:layout_editor_absoluteY="544dp" />
 
     <Button
-        android:id="@+id/btn_log"
+        android:id="@+id/btn_sign_up2"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:background="#388657"
-        android:backgroundTint="#388657"
-        android:text="회원 가입"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center"
+        android:backgroundTint="@color/bg"
+        android:text="@string/회원가입"
         android:textColor="@color/black"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="75dp"
