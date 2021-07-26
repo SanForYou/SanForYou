@@ -9,27 +9,102 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.sswu.sanforyou.AppHelper;
 import com.sswu.sanforyou.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReviewFragment extends Fragment {
 
-    ListView listview;
-    private static ReviewAdapter reviewAdapter;
+    private ListView listview;
+    private ReviewAdapter adapter;
+    private ArrayList<Review> reviews;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_review, container, false);
 
         listview = (ListView) view.findViewById(R.id.review_list_view);
-        ReviewAdapter adapter = new ReviewAdapter();
-        listview.setAdapter(adapter);
+        reviews = new ArrayList<>();
 
-        adapter.addReview("북한산", 3.0f, R.drawable.mountain1, "유저1", "하산하고 북한산 근처 식당에서 식사를 할 거면 미리 예약하고 주차를 하고 올라가는 것도 추천한다. 백운지지원센터에서 주차했을 때도 식사까지 하고 나왔는데 주차요금 만원 정도 나왔다. 백운지지원센터는 등산용품 파는 가게들이 많다. 이쪽으로 하산하면 눈 돌아간다. 그쪽에 있는 손칼국수 집이 가격도 괜찮고 맛집이다. ");
-        adapter.addReview("남산",4.5f,  R.drawable.mountain2,"유저2", "케이블카 재밌다");
-        adapter.addReview("한라산", 3.75f, R.drawable.mountain3,"유저3", "춥다");
+        if(AppHelper.requestQueue != null) {
+            AppHelper.requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        }
+
+        sendRequest();
 
         return view;
+    }
+
+    public void sendRequest() {
+        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/review.php";
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        System.out.println(response);
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = jsonObject.getJSONArray("reviews");
+
+                            for(int i=0;i<jsonArray.length();i++){
+
+                                JSONObject item = jsonArray.getJSONObject(i);
+
+                                int reviewID = item.getInt("reviewID");
+                                String writerID = item.getString("writerID");
+                                int scope = item.getInt("scope");
+                                String content = item.getString("content");
+                                int likes = item.getInt("scope");
+//                long images = item.getLong("images");
+                                String mountainName = item.getString("mountainName");
+
+                                Review review = new Review(reviewID, writerID, scope, content, likes, mountainName);
+
+                                reviews.add(review);
+                            }
+
+                            adapter = new ReviewAdapter(reviews);
+                            listview.setAdapter(adapter);
+
+                        } catch (JSONException e) {
+                            System.out.println("---------------------------------------------" + e);
+                        }
+                    }
+                },
+                new Response.ErrorListener() { //에러 발생시 호출될 리스너 객체
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println(error.getMessage());
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String,String>();
+
+                return params;
+            }
+        };
+        request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
+        AppHelper.requestQueue = Volley.newRequestQueue(getActivity());
+        AppHelper.requestQueue.add(request);
+
     }
 }

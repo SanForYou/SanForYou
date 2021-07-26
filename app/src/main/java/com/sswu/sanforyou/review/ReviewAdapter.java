@@ -14,9 +14,10 @@ import com.sswu.sanforyou.R;
 import java.util.ArrayList;
 
 public class ReviewAdapter extends BaseAdapter {
-    ArrayList<Review> reviews = new ArrayList<>();
+    ArrayList<Review> reviews;
 
-    public ReviewAdapter() {
+    public ReviewAdapter(ArrayList<Review> reviews) {
+        this.reviews = reviews;
     }
 
     @Override
@@ -56,16 +57,11 @@ public class ReviewAdapter extends BaseAdapter {
         Review review = reviews.get(position);
 
         mountainName.setText(review.getMountainName());
-        imageView.setImageResource(review.getImage());
-        userName.setText(review.getUserName());
+//        imageView.setImageResource((int) review.getImages());
+        userName.setText(review.getWriterID());
         content.setText(review.getContent());
-        rating.setRating(review.getRating());
+        rating.setRating(review.getScope());
 
         return convertView;
-    }
-
-    public void addReview(String mountainName, float rating, int image, String userName, String content){
-        Review review = new Review(mountainName, rating, image, userName, content);
-        reviews.add(review);
     }
 }
