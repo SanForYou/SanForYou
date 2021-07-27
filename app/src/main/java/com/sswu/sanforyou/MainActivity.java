@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     MapFragment map_fragment;
     InfoFragment info_fragment;
     ReviewFragment review_fragment;
-    MypageFragment mypage_fragment;
+    MyPageFragment mypage_fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         map_fragment = new MapFragment();
         info_fragment = new InfoFragment();
         review_fragment = new ReviewFragment();
-        mypage_fragment = new MypageFragment();
+        mypage_fragment = new MyPageFragment();
 
         // map_fragment를 첫번째 화면으로 설정
         getSupportFragmentManager().beginTransaction().replace(R.id.container, map_fragment).commit();
