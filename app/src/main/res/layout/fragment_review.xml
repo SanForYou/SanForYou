@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".review.ReviewFragment">
+    tools:context=".review.ReviewFragment"
+    android:id="@+id/reviewView">
 
     <ListView
         android:id="@+id/review_list_view"

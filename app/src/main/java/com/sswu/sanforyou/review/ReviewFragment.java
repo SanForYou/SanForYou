@@ -3,8 +3,13 @@ package com.sswu.sanforyou.review;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -28,6 +33,8 @@ import java.util.Map;
 
 public class ReviewFragment extends Fragment {
 
+    ReviewRegisterFragment fragment_review_register;
+
     private ListView listview;
     private ReviewAdapter adapter;
     private ArrayList<Review> reviews;
@@ -36,6 +43,7 @@ public class ReviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_review, container, false);
+        setHasOptionsMenu(true);
 
         listview = (ListView) view.findViewById(R.id.review_list_view);
         reviews = new ArrayList<>();
@@ -49,6 +57,34 @@ public class ReviewFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.review_action_bar, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        switch (itemId){
+            case R.id.review_register_button:
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                ReviewRegisterFragment reviewRegisterFragment = new ReviewRegisterFragment();
+                fragmentTransaction.replace(R.id.container, reviewRegisterFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_review_register).commit();
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public void sendRequest() {
         String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/review.php";
         StringRequest request = new StringRequest(
@@ -57,7 +93,7 @@ public class ReviewFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        System.out.println(response);
+//                        System.out.println(response);
 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
@@ -77,7 +113,7 @@ public class ReviewFragment extends Fragment {
 
                                 Review review = new Review(reviewID, writerID, scope, content, likes, mountainName);
 
-                                reviews.add(review);
+                                reviews.add(0, review); //최신순으로 정렬
                             }
 
                             adapter = new ReviewAdapter(reviews);
@@ -92,6 +128,8 @@ public class ReviewFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         System.out.println(error.getMessage());
+
+
                     }
                 }
         ) {
