@@ -22,7 +22,7 @@
         android:id="@+id/textView2_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="San For You"
+        android:text="@string/san_for_you"
         android:textColor="@color/black"
         android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,7 +81,7 @@
             app:layout_constraintVertical_bias="0.345" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/et_name"
             android:layout_width="250dp"
             android:layout_height="29dp"
             android:layout_gravity="center"
@@ -104,7 +104,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textAlignment="center"
-            android:text="@string/아이디"
+            android:text="@string/이메일"
             android:textColor="@color/black"
 
             app:layout_constraintBottom_toBottomOf="parent"
@@ -115,12 +115,12 @@
             app:layout_constraintVertical_bias="0.411" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/et_email"
             android:layout_width="250dp"
             android:layout_height="29dp"
             android:layout_gravity="center"
             android:background="#B2B2B3"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="155dp"
             tools:layout_editor_absoluteY="236dp" />
@@ -137,7 +137,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textAlignment="center"
-            android:text="@string/비밀번호확인"
+            android:text="@string/비밀번호"
             android:textColor="@color/black"
 
             app:layout_constraintBottom_toBottomOf="parent"
@@ -148,7 +148,7 @@
             app:layout_constraintVertical_bias="0.626" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/et_pwd"
             android:layout_width="250dp"
             android:layout_height="29dp"
             android:layout_gravity="center"
@@ -169,7 +169,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textAlignment="center"
-            android:text="@string/비밀번호"
+            android:text="@string/비밀번호확인"
             android:textColor="@color/black"
 
             app:layout_constraintBottom_toBottomOf="parent"
@@ -180,7 +180,7 @@
             app:layout_constraintVertical_bias="0.481" />
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/et_pwd2"
             android:layout_width="250dp"
             android:layout_height="29dp"
             android:layout_gravity="center"
@@ -188,39 +188,6 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="155dp"
             tools:layout_editor_absoluteY="446dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView2_10"
-            android:layout_width="110dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:text="@string/이메일"
-            android:textColor="@color/black"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.222"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.557" />
-
-        <EditText
-            android:id="@+id/editText6"
-            android:layout_width="250dp"
-            android:layout_height="29dp"
-            android:layout_gravity="center"
-            android:background="#B2B2B3"
-            android:inputType="textEmailAddress"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="155dp"
-            tools:layout_editor_absoluteY="397dp" />
     </LinearLayout>
 
     <View
@@ -233,16 +200,39 @@
         tools:layout_editor_absoluteX="60dp"
         tools:layout_editor_absoluteY="544dp" />
 
-    <Button
-        android:id="@+id/btn_sign_up2"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="@color/bg"
-        android:text="@string/회원가입"
-        android:textColor="@color/black"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="485dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/btn_sign_up2"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:backgroundTint="@color/bg"
+            android:layout_marginStart="40dp"
+            android:text="@string/회원가입"
+            android:textColor="@color/black"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="75dp"
+            tools:layout_editor_absoluteY="485dp"
+             />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/bg"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="40dp"
+            android:text="@string/돌아가기"
+            android:textColor="@color/black"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="75dp"
+            tools:layout_editor_absoluteY="485dp"
+             />
+        </LinearLayout>
 </LinearLayout>
