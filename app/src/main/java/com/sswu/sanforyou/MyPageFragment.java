@@ -15,9 +15,11 @@ public class MyPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        /*
         btn_cart= btn_cart.findViewById(R.id.bt1_cart);
         btn_review= btn_review.findViewById(R.id.bt2_myReview);
         btn_logOut= btn_logOut.findViewById(R.id.bt3_logOut);
+
 
         //'산바구니' 버튼 클릭시 수행
         btn_cart.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +48,7 @@ public class MyPageFragment extends Fragment {
                 //startActivity(intent);
             }
         });
-
+        */
         return inflater.inflate(R.layout.fragment_mypage, container, false);
     }
 }
