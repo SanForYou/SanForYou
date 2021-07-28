@@ -7,10 +7,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sswu.sanforyou.review.ReviewFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    //플래그먼트 프로퍼
+    //플래그먼트 프로퍼티
     MapFragment map_fragment;
     InfoFragment info_fragment;
     ReviewFragment review_fragment;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, map_fragment).commit();
 
         // bottom_navigation을 참조하는 변수 선언
-       BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // bottom_navigation의 item이 선택되면 호출되는 함수
         // item번호에 따라 해당하는 플래그먼트를 commit한다
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()){
+                        switch (item.getItemId()) {
                             case R.id.tab_map:
                                 getSupportFragmentManager().beginTransaction().replace(R.id.container, map_fragment).commit();
                                 return true;
@@ -59,7 +60,5 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
-
-
     }
 }
