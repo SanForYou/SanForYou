@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mypage.CartFragment">
+    tools:context=".mypage.MyReviewFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="산바구니" />
+        android:text="내가 쓴 리뷰" />
 
 </FrameLayout>

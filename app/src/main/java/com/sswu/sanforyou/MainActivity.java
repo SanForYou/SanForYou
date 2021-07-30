@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sswu.sanforyou.mypage.CartFragment;
+import com.sswu.sanforyou.mypage.MyPageFragment;
+import com.sswu.sanforyou.mypage.MyReviewFragment;
 import com.sswu.sanforyou.review.ReviewFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     InfoFragment info_fragment;
     ReviewFragment review_fragment;
     MyPageFragment mypage_fragment;
+    CartFragment cart_fragment;
+    MyReviewFragment myReviewFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         info_fragment = new InfoFragment();
         review_fragment = new ReviewFragment();
         mypage_fragment = new MyPageFragment();
+        cart_fragment= new CartFragment();
+        myReviewFragment = new MyReviewFragment();
 
         // map_fragment를 첫번째 화면으로 설정
         getSupportFragmentManager().beginTransaction().replace(R.id.container, map_fragment).commit();
@@ -60,5 +67,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    //feat: 유정/ 마이 페이지에서 버튼 클릭으로 fragment간의 전환을 구현하기 위한 함수
+    public void changeFragment(int index){
+        switch(index){
+            case 1:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, cart_fragment).commit();
+                break;
+            case 2:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, myReviewFragment).commit();
+                break;
+        }
     }
 }
