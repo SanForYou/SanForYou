@@ -22,8 +22,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth; //파이어베이스 인증처리
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
-    private EditText mEtEmail, mEtPwd; //회원가입 입력필드
-    private Button btn_sign_up2;  //회원가입 버튼
+    private EditText mEtName, mEtEmail, mEtPwd, mEtPwd2; //회원가입 입력필드
+    private Button btn_sign_up2, btn_cancel;  //회원가입 버튼, 돌아가기 버튼
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +33,19 @@ public class SignUpActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("SanForYou");
 
+        mEtName = findViewById(R.id.et_name);
         mEtEmail = findViewById(R.id.et_email);
         mEtPwd = findViewById(R.id.et_pwd);
+        mEtPwd2 = findViewById(R.id.et_pwd2);
+
+        btn_cancel = findViewById(R.id.btn_cancel);
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btn_sign_up2 = findViewById(R.id.btn_sign_up2);
         btn_sign_up2.setOnClickListener(new View.OnClickListener() {
@@ -42,8 +53,14 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) { //회원가입버튼 클릭 될때의 action
 
                 //회원가입 처리 시작
+                String strName = mEtName.getText().toString().trim();
                 String strEmail = mEtEmail.getText().toString().trim();
                 String strPwd = mEtPwd.getText().toString().trim();
+                String strPwd2 = mEtPwd2.getText().toString().trim();
+
+                while(strPwd.equals(strPwd2)){
+                    Toast.makeText(SignUpActivity.this, "비밀번호를 정확히 입력하세요", Toast.LENGTH_SHORT).show();
+                }
 
                 System.out.println("=====================================" + strEmail);
                 System.out.println("=====================================" + strPwd);
@@ -55,6 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
                             UserAccount account = new UserAccount();
+                            //account.setName(strName);
                             account.setIdToken(firebaseUser.getUid());
                             account.setEmailId(firebaseUser.getEmail());
                             account.setPassword(strPwd);

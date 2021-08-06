@@ -60,6 +60,7 @@
         android:layout_gravity="center"></View>
 
     <EditText
+        android:id="@+id/et_email"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="사용자 이메일"
@@ -70,7 +71,7 @@
         android:layout_marginTop="30dp"/>
 
     <EditText
-        android:id="@+id/et_id"
+        android:id="@+id/et_pwd"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="비밀번호"
@@ -81,7 +82,7 @@
         android:layout_marginTop="20dp"/>
 
     <Button
-        android:id="@+id/btn_sign_in"
+        android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
