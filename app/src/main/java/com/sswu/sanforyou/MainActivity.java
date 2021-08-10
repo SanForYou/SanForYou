@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sswu.sanforyou.Map.MapFragment;
 import com.sswu.sanforyou.review.ReviewFragment;
 
 public class MainActivity extends AppCompatActivity {
