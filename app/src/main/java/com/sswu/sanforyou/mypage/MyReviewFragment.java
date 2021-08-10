@@ -91,39 +91,7 @@ public class MyReviewFragment extends Fragment {
 
     //210810 수정
     public void sendRequest() {
-        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/id.php";
-
-        StringRequest requestID = new StringRequest(
-                Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                System.out.println("------------------------------response : <"+response+">");
-                /*
-                if (response.equals("insert error")) {
-                    System.out.println("insert fail");
-                } else {
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, reviewFragment).commit();
-
-                }*/
-            }
-        },
-                new Response.ErrorListener() { //에러 발생시 호출될 리스너 객체
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        System.out.println(error);
-                    }
-                }
-        ) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String,String>();
-
-                params.put("memberID", "testuser");
-                return params;
-            }
-        };
-
-        //수정끝
+        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/my_review.php?writerID=%27jiwon%27";
 
         StringRequest request = new StringRequest(
                 Request.Method.GET,
