@@ -56,33 +56,7 @@ public class MyPageFragment extends Fragment {
             }
         });
 
-        return rootView;
         /*
-
-        btn_review= btn_review.findViewById(R.id.bt2_myReview);
-        btn_logOut= btn_logOut.findViewById(R.id.bt3_logOut);
-
-
-        //'산바구니' 버튼 클릭시 수행
-        btn_cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction transaction =
-                //Intent intent = new Intent(MyPageFragment.this, CartFragment.class);
-                //startActivity(intent);
-            }
-        });
-
-
-        //'내가 쓴 리뷰' 버튼 클릭시 수행
-        btn_review.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Intent intent = new Intent(MyPageFragment.this, activity_myReview.class);
-                //startActivity(intent);
-            }
-        });
-
         //'로그아웃' 버튼 클릭시 수행
         btn_logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,5 +67,6 @@ public class MyPageFragment extends Fragment {
         });
         */
         //return inflater.inflate(R.layout.fragment_mypage, container, false);
+        return rootView;
     }
 }
