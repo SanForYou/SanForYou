@@ -69,13 +69,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
           setMarker(context, naverMap);
 
          CameraPosition cameraPosition = new CameraPosition(
-                new LatLng(37.5642135, 127.0016985),   // 위치 지정
-                6,                                     // 줌 레벨
+                new LatLng(37.66147762135974, 126.99316130211811),   // 위치 지정
+                9,                                     // 줌 레벨
                 0,                                       // 기울임 각도
                 0                                     // 방향
         );
         naverMap.setCameraPosition(cameraPosition);
-
+        naverMap.setLayerGroupEnabled(NaverMap.LAYER_GROUP_MOUNTAIN,true);
+        naverMap.setLayerGroupEnabled(NaverMap.LAYER_GROUP_BUILDING,false);
+        naverMap.setNightModeEnabled(true);
     }
 
 
@@ -83,32 +85,41 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         ArrayList<Double> latList = new ArrayList<Double>();
         ArrayList<Double> lngList = new ArrayList<>();
+        ArrayList<String> nameList = new ArrayList<>();
 
         String confirm = "confirm";
         //String id
 
-        final double[] latGae = {0};
-        final double[] latGwan = {0};
-        final double[] latDo = {0};
-        final double[] latBook = {0};
-        final double[] latAh = {0};
-        final double[] latEung = {0};
-        final double[] latIn = {0};
-        final double[] latJi = {0};
+        final double[] lat1 = {0};
+        final double[] lat2 = {0};
+        final double[] lat3 = {0};
+        final double[] lat4 = {0};
+        final double[] lat5 = {0};
+        final double[] lat6 = {0};
+        final double[] lat7 = {0};
+        final double[] lat8 = {0};
+        final double[] lat9 = {0};
+        final double[] lat10 = {0};
+        final double[] lat11 = {0};
 
-        final double[] lngGae = {0};
-        final double[] lngGwan = {0};
-        final double[] lngDo = {0};
-        final double[] lngBook = {0};
-        final double[] lngAh = {0};
-        final double[] lngEung = {0};
-        final double[] lngIn = {0};
-        final double[] lngJi = {0};
+        final double[] lng1 = {0};
+        final double[] lng2 = {0};
+        final double[] lng3 = {0};
+        final double[] lng4 = {0};
+        final double[] lng5 = {0};
+        final double[] lng6 = {0};
+        final double[] lng7 = {0};
+        final double[] lng8 = {0};
+        final double[] lng9 = {0};
+        final double[] lng10 = {0};
+        final double[] lng11 = {0};
+
+        final String[] name1 = new String[0];
 
 
 
 
-        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/mountainStamp.php?writerID=%27jiwon%27";
+        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/mountainStamp.php?writerID=%27testuser%27";
         //?writerID=" + id;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -132,48 +143,69 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
 
                                 if (mountainName.equals("계룡산")) {
-                                    latGae[0] += Double.parseDouble(latitude);
-                                    lngGae[0] += Double.parseDouble(longitude);
+                                    lat1[0] += Double.parseDouble(latitude);
+                                    lng1[0] += Double.parseDouble(longitude);
+                                    nameList.add("계룡산");
                                 } else if (mountainName.equals("관악산")) {
-                                    latGwan[0] += Double.parseDouble(latitude);
-                                    lngGwan[0] += Double.parseDouble(longitude);
+                                    lat2[0] += Double.parseDouble(latitude);
+                                    lng2[0] += Double.parseDouble(longitude);
+                                    nameList.add("관악산");
                                 } else if (mountainName.equals("도봉산")) {
-                                    latDo[0] += Double.parseDouble(latitude);
-                                    lngDo[0] += Double.parseDouble(longitude);
+                                    lat3[0] += Double.parseDouble(latitude);
+                                    lng3[0] += Double.parseDouble(longitude);
+                                    nameList.add("도봉산");
                                 } else if (mountainName.equals("북한산")) {
-                                    latBook[0] += Double.parseDouble(latitude);
-                                    lngBook[0] += Double.parseDouble(longitude);
+                                    lat4[0] += Double.parseDouble(latitude);
+                                    lng4[0] += Double.parseDouble(longitude);
+                                    nameList.add("북한산");
                                 } else if (mountainName.equals("아차산")) {
-                                    latAh[0] += Double.parseDouble(latitude);
-                                    lngAh[0] += Double.parseDouble(longitude);
+                                    lat5[0] += Double.parseDouble(latitude);
+                                    lng5[0] += Double.parseDouble(longitude);
+                                    nameList.add("아차산");
                                 } else if (mountainName.equals("응봉산")) {
-                                    latEung[0] += Double.parseDouble(latitude);
-                                    lngEung[0] += Double.parseDouble(longitude);
+                                    lat6[0] += Double.parseDouble(latitude);
+                                    lng6[0] += Double.parseDouble(longitude);
+                                    nameList.add("응봉산");
                                 } else if (mountainName.equals("인왕산")) {
-                                    latIn[0] += Double.parseDouble(latitude);
-                                    lngIn[0] += Double.parseDouble(longitude);
-                                } else if (mountainName.equals("지리산")) {
-                                    latJi[0] += Double.parseDouble(latitude);
-                                    lngJi[0] += Double.parseDouble(longitude);
+                                    lat7[0] += Double.parseDouble(latitude);
+                                    lng7[0] += Double.parseDouble(longitude);
+                                    nameList.add("인왕산");
+                                } else if (mountainName.equals("매봉산")) {
+                                    lat8[0] += Double.parseDouble(latitude);
+                                    lng8[0] += Double.parseDouble(longitude);
+                                    nameList.add("매봉산");
+                                } else if (mountainName.equals("봉화산")) {
+                                    lat9[0] += Double.parseDouble(latitude);
+                                    lng9[0] += Double.parseDouble(longitude);
+                                    nameList.add("봉화산");
+                                }else if (mountainName.equals("수락산")) {
+                                    lat10[0] += Double.parseDouble(latitude);
+                                    lng10[0] += Double.parseDouble(longitude);
+                                    nameList.add("수락산");
+                                }else if (mountainName.equals("안산")) {
+                                    lat11[0] += Double.parseDouble(latitude);
+                                    lng11[0] += Double.parseDouble(longitude);
+                                    nameList.add("안산");
                                 }
                             }
-                            latList.add(latGae[0]);
-                            latList.add(latGwan[0]);
-                            latList.add(latDo[0]);
-                            latList.add(latBook[0]);
-                            latList.add(latAh[0]);
-                            latList.add(latEung[0]);
-                            latList.add(latIn[0]);
-                            latList.add(latJi[0]);
+                            latList.add(lat1[0]);
+                            latList.add(lat2[0]);
+                            latList.add(lat3[0]);
+                            latList.add(lat4[0]);
+                            latList.add(lat5[0]);
+                            latList.add(lat6[0]);
+                            latList.add(lat7[0]);
+                            latList.add(lat8[0]);
 
-                            lngList.add(lngGae[0]);
-                            lngList.add(lngGwan[0]);
-                            lngList.add(lngDo[0]);
-                            lngList.add(lngBook[0]);
-                            lngList.add(lngAh[0]);
-                            lngList.add(lngEung[0]);
-                            lngList.add(lngIn[0]);
-                            lngList.add(lngJi[0]);
+                            lngList.add(lng1[0]);
+                            lngList.add(lng2[0]);
+                            lngList.add(lng3[0]);
+                            lngList.add(lng4[0]);
+                            lngList.add(lng5[0]);
+                            lngList.add(lng6[0]);
+                            lngList.add(lng7[0]);
+                            lngList.add(lng8[0]);
+
 
 
                             while (latList.remove(Double.valueOf(0.0))) {
@@ -183,16 +215,24 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
                             };
 
+                            System.out.println("nameList :" +nameList);
+
 
                                 List<Marker> markers = new ArrayList<>();
 
                                 for(int i = 0 ; i<latList.size();i++) {
-                                    Marker marker = new Marker();
                                     double lat = latList.get(i);
                                     double lng = lngList.get(i);
+                                    Marker marker = new Marker();
+
                                     marker.setPosition(new LatLng(lat, lng));
-                                    marker.setIcon(OverlayImage.fromResource(R.drawable.marker_icon));
+                                    marker.setCaptionText(nameList.get(i));
+                                    marker.setIcon(OverlayImage.fromResource(R.drawable.marker));
+                                    marker.setWidth(Marker.SIZE_AUTO);
+                                    marker.setHeight(Marker.SIZE_AUTO);
+                                    marker.setIconPerspectiveEnabled(true);
                                     markers.add(marker);
+
                                 }
 
                                     for(Marker marker: markers) {
