@@ -58,40 +58,22 @@ public class MyReviewFragment extends Fragment {
         return view;
     }
 
-    /*
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.review_action_bar, menu);
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-
-        switch (itemId){
-            case R.id.review_register_button:
-
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                ReviewRegisterFragment reviewRegisterFragment = new ReviewRegisterFragment();
-                fragmentTransaction.replace(R.id.container, reviewRegisterFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-
-//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_review_register).commit();
-            default:
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
- */
 
     //210810 수정
     public void sendRequest() {
-        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/my_review.php?writerID=%27jiwon%27";
+
+        /*파이어베이스 연동
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            String name = user.getDisplayName();
+        } else {
+            // No user is signed in
+        }
+
+        */
+
+        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/my_review.php?writerID=%27testuser%27";
 
         StringRequest request = new StringRequest(
                 Request.Method.GET,
@@ -148,4 +130,36 @@ public class MyReviewFragment extends Fragment {
         AppHelper.requestQueue.add(request);
 
     }
+
+        /*
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.review_action_bar, menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        switch (itemId){
+            case R.id.review_register_button:
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                ReviewRegisterFragment reviewRegisterFragment = new ReviewRegisterFragment();
+                fragmentTransaction.replace(R.id.container, reviewRegisterFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_review_register).commit();
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+ */
+
 }
