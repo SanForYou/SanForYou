@@ -58,39 +58,42 @@ public class SignUpActivity extends AppCompatActivity {
                 String strPwd = mEtPwd.getText().toString().trim();
                 String strPwd2 = mEtPwd2.getText().toString().trim();
 
-                while(strPwd.equals(strPwd2)){
+                if(!(strPwd.equals(strPwd2))){
                     Toast.makeText(SignUpActivity.this, "비밀번호를 정확히 입력하세요", Toast.LENGTH_SHORT).show();
                 }
+                else {
+                    System.out.println("여기까지 완료");
+                    //FireBase Auth 진행
+                    mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            System.out.println("여기까지 완료2");
+                            if (task.isSuccessful()) {
+                                System.out.println("isSuccesful~~");
+                                FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
 
-                System.out.println("=====================================" + strEmail);
-                System.out.println("=====================================" + strPwd);
+                                UserAccount account = new UserAccount();
+                                account.setName(strName);
+                                account.setIdToken(firebaseUser.getUid());
+                                account.setEmailId(firebaseUser.getEmail());
+                                account.setPassword(strPwd);
 
-                //FireBase Auth 진행
-                mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
-                            UserAccount account = new UserAccount();
-                            //account.setName(strName);
-                            account.setIdToken(firebaseUser.getUid());
-                            account.setEmailId(firebaseUser.getEmail());
-                            account.setPassword(strPwd);
+                                System.out.println(strName + ", "+firebaseUser.getUid()+"," + firebaseUser.getEmail()+"," + strPwd);
+                                Toast.makeText(SignUpActivity.this, "여기까지 완료!", Toast.LENGTH_SHORT).show();
 
-                            //setValue : database에 insert!
-                            mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
+                                //setValue : database에 insert!
+                                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
 
-                            Toast.makeText(SignUpActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(SignUpActivity.this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(SignUpActivity.this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
-
-                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class );
-                startActivity(intent);
+                    });
+                    Intent intent = new Intent(SignUpActivity.this, SignInActivity.class );
+                    startActivity(intent);
+                }
             }
-
         });
     }
 }
