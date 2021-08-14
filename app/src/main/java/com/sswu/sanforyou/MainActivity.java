@@ -1,20 +1,24 @@
 package com.sswu.sanforyou;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/*프래그먼트를 보여주는 컨테이너 역할을 함*/
+
 public class MainActivity extends AppCompatActivity {
+
+    MemberInfoItem memberInfoItem;
 
     //플래그먼트 프로퍼
     MapFragment map_fragment;
     InfoFragment info_fragment;
     ReviewFragment review_fragment;
-    MypageFragment mypage_fragment;
+    MypageFragment mypageFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         map_fragment = new MapFragment();
         info_fragment = new InfoFragment();
         review_fragment = new ReviewFragment();
-        mypage_fragment = new MypageFragment();
+        mypageFragment = new MypageFragment();
 
         // map_fragment를 첫번째 화면으로 설정
         getSupportFragmentManager().beginTransaction().replace(R.id.container, map_fragment).commit();
@@ -51,15 +55,18 @@ public class MainActivity extends AppCompatActivity {
                                 getSupportFragmentManager().beginTransaction().replace(R.id.container, review_fragment).commit();
                                 return true;
                             case R.id.tab_mypage:
-                                getSupportFragmentManager().beginTransaction().replace(R.id.container, mypage_fragment).commit();
+                                getSupportFragmentManager().beginTransaction().replace(R.id.container, mypageFragment).commit();
                                 return true;
                         }
 
                         return false;
                     }
+
                 }
         );
-
-
+        memberInfoItem = ((MyApp)getApplication()).getMemberInfoItem();
     }
+
+
+
 }
