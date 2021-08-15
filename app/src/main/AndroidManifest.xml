@@ -15,13 +15,14 @@
         android:usesCleartextTraffic="true">
         <uses-library android:name="org.apache.http.legacy"
             android:required="false"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"/>
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="2ykent3qjj" />

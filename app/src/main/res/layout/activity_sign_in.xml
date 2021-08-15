@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    tools:context=".SignInActivity">
+
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="126dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/san_image"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="San For You"
+        android:textSize="50px"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.546"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.238"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="산포유"
+        android:textColor="@color/white"
+        android:textSize="100px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.275"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="255dp"
+        tools:ignore="MissingConstraints"
+        android:layout_gravity="center"></View>
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="사용자 이메일"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="298dp"
+        tools:ignore="MissingConstraints"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/et_pwd"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="비밀번호"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="364dp"
+        tools:ignore="MissingConstraints"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="25dp"
+        android:backgroundTint="#C4C4C4"
+        android:text="로그인"
+        android:textColor="@color/black"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="90dp"
+        tools:layout_editor_absoluteY="441dp" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="530dp"
+        tools:ignore="MissingConstraints"
+        android:layout_gravity="center"></View>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="산포유의 회원이 아니신가요?"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.913"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.804"
+        android:layout_gravity="right"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="80dp"/>
+
+    <Button
+        android:id="@+id/btn_sign_up"
+        android:layout_width="111dp"
+        android:layout_height="39dp"
+        android:text="회원가입"
+        android:textColor="@color/black"
+        android:backgroundTint="#C4C4C4"
+        tools:layout_editor_absoluteX="280dp"
+        tools:layout_editor_absoluteY="603dp"
+        tools:ignore="MissingConstraints"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="80dp"/>
+</LinearLayout>

@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import com.sswu.sanforyou.MainActivity;
 import com.sswu.sanforyou.R;
+import com.sswu.sanforyou.SignInActivity;
 
 public class MyPageFragment extends Fragment {
     private Button btn_cart, btn_review, btn_logout;
@@ -56,16 +57,16 @@ public class MyPageFragment extends Fragment {
             }
         });
 
-        /*
         //'로그아웃' 버튼 클릭시 수행
-        btn_logOut.setOnClickListener(new View.OnClickListener() {
+        btn_logout= rootView.findViewById(R.id.bt3_logOut);
+        btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(MyPageFragment.this, activity_main.class);
-                //startActivity(intent);
+                Intent intent = new Intent(getActivity(), SignInActivity.class);
+                startActivity(intent);
             }
         });
-        */
+
         //return inflater.inflate(R.layout.fragment_mypage, container, false);
         return rootView;
     }
