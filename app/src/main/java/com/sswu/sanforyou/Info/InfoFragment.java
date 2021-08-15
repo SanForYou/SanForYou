@@ -1,4 +1,4 @@
-package com.sswu.sanforyou;
+package com.sswu.sanforyou.Info;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.sswu.sanforyou.R;
 
 public class InfoFragment extends Fragment {
 

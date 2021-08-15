@@ -130,36 +130,4 @@ public class MyReviewFragment extends Fragment {
         AppHelper.requestQueue.add(request);
 
     }
-
-        /*
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.review_action_bar, menu);
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-
-        switch (itemId){
-            case R.id.review_register_button:
-
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                ReviewRegisterFragment reviewRegisterFragment = new ReviewRegisterFragment();
-                fragmentTransaction.replace(R.id.container, reviewRegisterFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-
-//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_review_register).commit();
-            default:
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
- */
-
 }

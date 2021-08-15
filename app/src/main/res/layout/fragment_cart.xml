@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mypage.CartFragment">
+    tools:context=".mypage.CartFragment"
+    android:id="@+id/cartView">
 
-    <TextView
+    <ListView
+        android:id="@+id/cart_list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="산바구니" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="55dp" />
 
 </FrameLayout>
