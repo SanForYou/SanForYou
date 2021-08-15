@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -48,7 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
         mEtPwd2 = findViewById(R.id.et_pwd2);
 
         btn_cancel = findViewById(R.id.btn_cancel);
-        btn_cancel.setOnClickListener(new View.OnClickListener() {
+        btn_cancel.setOnClickListener(new View.OnClickListener() {//취소 버튼 클릭 시 로그인 화면으로 돌아가기
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
@@ -57,7 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         btn_sign_up2 = findViewById(R.id.btn_sign_up2);
-        btn_sign_up2.setOnClickListener(new View.OnClickListener() {
+        btn_sign_up2.setOnClickListener(new View.OnClickListener() { //회원가입 버튼 클릭 시 회원가입 진행
             @Override
             public void onClick(View v) { //회원가입버튼 클릭 될때의 action
 
@@ -73,7 +74,7 @@ public class SignUpActivity extends AppCompatActivity {
                 else {
                     System.out.println("여기까지 완료");
 
-                    //mysql post 진행
+                    //mysql에 member 데이터 삽입 진행
                     sendRequest();
 
                     //FireBase Auth 진행
@@ -92,10 +93,12 @@ public class SignUpActivity extends AppCompatActivity {
                                 account.setPassword(strPwd);
 
                                 System.out.println(strName + ", "+firebaseUser.getUid()+"," + firebaseUser.getEmail()+"," + strPwd);
-                                Toast.makeText(SignUpActivity.this, "여기까지 완료!", Toast.LENGTH_SHORT).show();
 
                                 //setValue : database에 insert!
                                 mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
+                                //firebase databse에 Display Name 추가하기
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(strName).build();
+                                firebaseUser.updateProfile(profileUpdates);
 
                                 Toast.makeText(SignUpActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
                             } else {
@@ -103,6 +106,7 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                         }
                     });
+
                     Intent intent = new Intent(SignUpActivity.this, SignInActivity.class );
                     startActivity(intent);
                 }
@@ -119,9 +123,9 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if (response.equals("insert error")) {
-                    System.out.println("insert fail");
+                    System.out.println("mysql: member register fail");
                 } else {
-                    System.out.println("member Insert succuess!");
+                    System.out.println("mysql: member register succuess!");
                 }
             }
         },

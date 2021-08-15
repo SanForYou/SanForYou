@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -15,6 +16,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.sswu.sanforyou.AppHelper;
 import com.sswu.sanforyou.R;
 
@@ -31,7 +34,7 @@ public class CartFragment extends Fragment {
     private ListView listView;
     private CartAdapter adapter;
     private ArrayList<Cart> carts;
-
+    String memberID;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
@@ -51,19 +54,16 @@ public class CartFragment extends Fragment {
 
 
     public void sendRequest() {
-
-        /*파이어베이스 연동
+        //파이어베이스 연동
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // User is signed in
-            String name = user.getDisplayName();
+            memberID= user.getEmail();
         } else {
             // No user is signed in
+            Toast.makeText(getActivity(), "에러 발생", Toast.LENGTH_SHORT).show();
         }
-
-        */
-
-        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/cart.php?memberID=%27jiwon%27";
+        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/cart.php?memberID=%27"+memberID+"%27";
 
         StringRequest request = new StringRequest(
                 Request.Method.GET,

@@ -1,4 +1,6 @@
 package com.sswu.sanforyou.mypage;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.sswu.sanforyou.review.*;
 
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -33,9 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MyReviewFragment extends Fragment {
-
-    //ReviewRegisterFragment fragment_review_register;
-
+    private String memberID;
     private ListView listview;
     private ReviewAdapter adapter;
     private ArrayList<Review> reviews;
@@ -62,18 +63,17 @@ public class MyReviewFragment extends Fragment {
     //210810 수정
     public void sendRequest() {
 
-        /*파이어베이스 연동
+        //파이어베이스 연동
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // User is signed in
-            String name = user.getDisplayName();
+            memberID= user.getEmail();
         } else {
             // No user is signed in
+            Toast.makeText(getActivity(), "에러 발생", Toast.LENGTH_SHORT).show();
         }
 
-        */
-
-        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/my_review.php?writerID=%27testuser%27";
+        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/my_review.php?writerID=%27"+memberID+"%27";
 
         StringRequest request = new StringRequest(
                 Request.Method.GET,
@@ -82,7 +82,7 @@ public class MyReviewFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
 //                        System.out.println(response);
-
+                        System.out.println("-------------수정한 url="+url);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray jsonArray = jsonObject.getJSONArray("my_reviews");
