@@ -25,6 +25,11 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText mEtName, mEtEmail, mEtPwd, mEtPwd2; //회원가입 입력필드
     private Button btn_sign_up2, btn_cancel;  //회원가입 버튼, 돌아가기 버튼
 
+    public void sendRequest() {
+
+        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/memberInsert.php";
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +74,7 @@ public class SignUpActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             System.out.println("여기까지 완료2");
                             if (task.isSuccessful()) {
+                                sendRequest();
                                 System.out.println("isSuccesful~~");
                                 FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
 
