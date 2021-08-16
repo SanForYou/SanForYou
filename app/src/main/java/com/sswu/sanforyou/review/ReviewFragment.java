@@ -118,7 +118,7 @@ public class ReviewFragment extends Fragment {
 
                             adapter = new ReviewAdapter(reviews);
                             listview.setAdapter(adapter);
-
+                            System.out.println("reviewList" + reviews);
                         } catch (JSONException e) {
                             System.out.println("---------------------------------------------" + e);
                         }
