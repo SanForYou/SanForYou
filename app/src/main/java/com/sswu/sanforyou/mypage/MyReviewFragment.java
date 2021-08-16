@@ -60,10 +60,9 @@ public class MyReviewFragment extends Fragment {
     }
 
 
-    //210810 수정
     public void sendRequest() {
 
-        //파이어베이스 연동
+        //현재 로그인한 사용자 불러오기
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // User is signed in

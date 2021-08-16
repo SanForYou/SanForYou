@@ -19,6 +19,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
 import com.naver.maps.map.NaverMap;
@@ -40,7 +42,7 @@ import java.util.concurrent.Executor;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     Context context;
-
+    private String memberID;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -117,9 +119,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         final String[] name1 = new String[0];
 
 
+        //현재 로그인한 사용자 정보 불러오기
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            memberID= user.getEmail();
+        } else {
+            // No user is signed in
+            Toast.makeText(getActivity(), "에러 발생", Toast.LENGTH_SHORT).show();
+        }
 
 
-        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/mountainStamp.php?writerID=%27testuser%27";
+        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/mountainStamp.php?writerID=%27"+memberID+"%27";
         //?writerID=" + id;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
