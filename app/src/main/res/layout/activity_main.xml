@@ -13,12 +13,11 @@
         android:layout_height="55dp"
         android:layout_gravity="bottom"
         android:layout_marginBottom="0dp"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_navigation"
-
         android:background="#dddddd"
         app:itemIconTint="@drawable/menu_selector_color"
+
         app:itemTextColor="@drawable/menu_selector_color"
-        />
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation" />
 
 </FrameLayout>

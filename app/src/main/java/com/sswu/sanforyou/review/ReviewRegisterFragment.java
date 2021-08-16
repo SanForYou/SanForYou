@@ -22,9 +22,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.sswu.sanforyou.AppHelper;
 import com.sswu.sanforyou.R;
 import android.app.AlertDialog;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -42,19 +45,30 @@ public class ReviewRegisterFragment extends Fragment {
     private String userId;
     private Button registerButton;
 
+    private FirebaseAuth mFirebaseAuth;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_review_register, container, false);
 
 
-
         mountainName = (EditText) view.findViewById(R.id.register_mountain_name);
         content = (EditText) view.findViewById(R.id.register_content);
         scope = (RatingBar) view.findViewById(R.id.register_ratingbar);
         registerButton = (Button) view.findViewById(R.id.register_button);
-        userId = "testuser";
+        //userId = "testuser";
 
+        //현재 로그인한 사용자를 writer로 띄우기
+        mFirebaseAuth= FirebaseAuth.getInstance();
+        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            userId= user.getEmail();
+        } else {
+            // No user is signed in
+            System.out.println("user는 null");
+        }
 
         registerButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -98,7 +112,16 @@ public class ReviewRegisterFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<String,String>();
 
-                params.put("writerID", "testuser");
+                mFirebaseAuth= FirebaseAuth.getInstance();
+                FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    params.put("writerID", user.getEmail());
+                } else {
+                    // No user is signed in
+                    System.out.println("user는 null");
+                }
+
                 params.put("scope", Integer.toString((int) scope.getRating()));
                 params.put("content", content.getText().toString());
                 params.put("mountainName", mountainName.getText().toString());

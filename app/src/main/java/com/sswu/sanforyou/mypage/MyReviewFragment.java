@@ -1,4 +1,7 @@
-package com.sswu.sanforyou.review;
+package com.sswu.sanforyou.mypage;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.sswu.sanforyou.review.*;
 
 import android.os.Bundle;
 
@@ -13,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -31,10 +35,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReviewFragment extends Fragment {
-
-    ReviewRegisterFragment fragment_review_register;
-
+public class MyReviewFragment extends Fragment {
+    private String memberID;
     private ListView listview;
     private ReviewAdapter adapter;
     private ArrayList<Review> reviews;
@@ -42,10 +44,10 @@ public class ReviewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_review, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_review, container, false);
         setHasOptionsMenu(true);
 
-        listview = (ListView) view.findViewById(R.id.review_list_view);
+        listview = (ListView) view.findViewById(R.id.my_review_list_view);
         reviews = new ArrayList<>();
 
         if(AppHelper.requestQueue != null) {
@@ -57,36 +59,21 @@ public class ReviewFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.review_action_bar, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-
-        switch (itemId){
-            case R.id.review_register_button:
-
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                ReviewRegisterFragment reviewRegisterFragment = new ReviewRegisterFragment();
-                fragmentTransaction.replace(R.id.container, reviewRegisterFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-
-//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_review_register).commit();
-            default:
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     public void sendRequest() {
-        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/review.php";
+
+        //현재 로그인한 사용자 불러오기
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            memberID= user.getEmail();
+        } else {
+            // No user is signed in
+            Toast.makeText(getActivity(), "에러 발생", Toast.LENGTH_SHORT).show();
+        }
+
+        String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/my_review.php?writerID=%27"+memberID+"%27";
+
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 url,
@@ -94,10 +81,10 @@ public class ReviewFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
 //                        System.out.println(response);
-
+                        System.out.println("-------------수정한 url="+url);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            JSONArray jsonArray = jsonObject.getJSONArray("reviews");
+                            JSONArray jsonArray = jsonObject.getJSONArray("my_reviews");
 
                             for(int i=0;i<jsonArray.length();i++){
 
@@ -118,7 +105,7 @@ public class ReviewFragment extends Fragment {
 
                             adapter = new ReviewAdapter(reviews);
                             listview.setAdapter(adapter);
-                            System.out.println("reviewList" + reviews);
+
                         } catch (JSONException e) {
                             System.out.println("---------------------------------------------" + e);
                         }
@@ -128,15 +115,12 @@ public class ReviewFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         System.out.println(error.getMessage());
-
-
                     }
                 }
         ) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<String,String>();
-
                 return params;
             }
         };

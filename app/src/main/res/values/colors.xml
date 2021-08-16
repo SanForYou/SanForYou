@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="sanGray1">#BFBDBD</color>
+    <color name="sanGray2">#A6A6A6</color>
+    <color name="sanGray3">#959494</color>
+    <color name="sanGreen">#388657</color>
+    <color name="bg">#388657</color>
 </resources>
