@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/linearLayout2"
-        android:background="@color/sanGreen">
+        android:background="#B2CFB0">
 
 
         <ImageView
@@ -27,7 +27,7 @@
             android:layout_height="80dp"
             android:layout_marginLeft="35dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/mypage" />
+            android:src="@drawable/user_icon" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -43,20 +43,22 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="5dp">
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:text="당신을 위한 산 San for You" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp">
 
+               <TextView
+                   android:id="@+id/Hi"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="15sp"
+                   android:textStyle="bold"
+                   android:text="안녕하세요, " />
                 <TextView
                     android:id="@+id/text1"
                     android:layout_width="wrap_content"
@@ -64,6 +66,17 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:text="test user"/>
+
+                <TextView
+                    android:id="@+id/nim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:text=" 님" />
+
+
+
             </LinearLayout>
 
 
@@ -89,9 +102,8 @@
             android:textSize="23sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            app:backgroundTint="@color/white"
+            app:backgroundTint="#D3E7D5"
             android:layout_weight="1"
-
             />
 
         <Button
@@ -103,9 +115,8 @@
             android:textSize="23sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            app:backgroundTint="@color/white"
+            app:backgroundTint="#E5F1E6"
             android:layout_weight="1"
-
             />
         <Button
             android:id="@+id/bt3_logOut"
@@ -116,7 +127,7 @@
             android:textSize="23sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            app:backgroundTint="@color/white"
+            app:backgroundTint="#F0F4F1"
             android:layout_weight="1"
             />
         </LinearLayout>
