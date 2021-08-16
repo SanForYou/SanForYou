@@ -1,21 +1,13 @@
 package com.sswu.sanforyou.Info;
-
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -24,12 +16,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.sswu.sanforyou.AppHelper;
-import com.sswu.sanforyou.MySingleton;
 import com.sswu.sanforyou.R;
-import com.sswu.sanforyou.review.Review;
-import com.sswu.sanforyou.review.ReviewAdapter;
-import com.sswu.sanforyou.review.ReviewRegisterFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,8 +34,9 @@ public class InfoFragment extends Fragment {
     private ListView listview;
     private InfoAdapter adapter;
     private ArrayList<Info> infoArrayList;
-    Context context;
-
+    private ImageButton cart;
+    private FirebaseAuth mFirebaseAuth;
+    private TextView mountainName;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,6 +46,8 @@ public class InfoFragment extends Fragment {
 
         listview = (ListView) view.findViewById(R.id.info_list_view);
         infoArrayList = new ArrayList<>();
+        cart = (ImageButton) view.findViewById(R.id.bt_cart);
+        mountainName = (TextView) view.findViewById(R.id.info_mountainName);
 
         if(AppHelper.requestQueue != null) {
             AppHelper.requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
@@ -65,7 +58,7 @@ public class InfoFragment extends Fragment {
         return view;
     }
 
-
+    //산 정보 띄우기 sendRequest
     public void sendRequest() {
         String url = "http://ec2-3-34-189-249.ap-northeast-2.compute.amazonaws.com/mountainInfo.php";
         StringRequest request = new StringRequest(
@@ -74,9 +67,6 @@ public class InfoFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-//                        System.out.println(response);
-
-
                         try {
 
                             JSONObject jsonObject = new JSONObject(response);
@@ -93,20 +83,11 @@ public class InfoFragment extends Fragment {
                                 String height = item.getString("height");
                                 double scope = item.getDouble("scope");
 
-
-
-
-
                                 Info informList = new Info(mountainName, scope, address, height, latitude, longitude);
-
                                 infoArrayList.add(0, informList); //최신순으로 정렬
-
-
                             }
-
-                            adapter = new InfoAdapter(infoArrayList);
+                            adapter = new InfoAdapter(getActivity(), infoArrayList);
                             listview.setAdapter(adapter);
-
 
                         } catch (JSONException e) {
                             System.out.println("--------" + e);
@@ -117,21 +98,18 @@ public class InfoFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         System.out.println(error.getMessage());
-
-
                     }
                 }
         ) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<String,String>();
-
                 return params;
             }
         };
         request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
         AppHelper.requestQueue = Volley.newRequestQueue(getActivity());
         AppHelper.requestQueue.add(request);
-
     }
+
 }

@@ -57,7 +57,6 @@ public class ReviewRegisterFragment extends Fragment {
         content = (EditText) view.findViewById(R.id.register_content);
         scope = (RatingBar) view.findViewById(R.id.register_ratingbar);
         registerButton = (Button) view.findViewById(R.id.register_button);
-        //userId = "testuser";
 
         //현재 로그인한 사용자를 writer로 띄우기
         mFirebaseAuth= FirebaseAuth.getInstance();
