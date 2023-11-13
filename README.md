@@ -48,7 +48,7 @@ Trello :https://trello.com/b/bJsZu7B8/mountain
 ![image](https://user-images.githubusercontent.com/78153919/215469710-41ad5790-6e11-4b85-bb84-269c1a5439cc.png)
 
 ### 🎬 시연 영상
-* [프로젝트 시연 영상](https://www.youtube.com/watch?v=abNEC-vWowY&t=99s)
+* [프로젝트 시연 영상](https://www.youtube.com/watch?v=nayPppPBjAQ)
 
 ### 📄 최종 보고서
 * [최종 보고서](https://docs.google.com/presentation/d/1TARVgrszoRQ7vNcN9wjXsjHwDbeQSC0-/edit?usp=share_link&ouid=106019266129878443343&rtpof=true&sd=true)
